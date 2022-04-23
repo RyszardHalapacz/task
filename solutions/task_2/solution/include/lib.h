@@ -30,7 +30,7 @@ std::map<month,short int> day_month = {
     };
     bool special_year(short int year)
     {
-        return ((year%4==0) && (year&100!=0) || year %400==0); 
+        return ((year%4==0) && (year%100!=0) || year %400==0); 
     };
 bool check_date(short int day,short int month_num, short int year)
 {
@@ -38,7 +38,7 @@ bool check_date(short int day,short int month_num, short int year)
     if(month_num <1 || month_num> 12) return false;
     if(special_year(year) && ((month)month_num==month::February)) 
     {
-        return ((day <= day_month[(month)month_num] +1) || day<1) ;
+        return ((day <= day_month[(month)month_num] +1) && day>0) ;
     }
-    else return ((day <= day_month[(month)month_num]) || day<1);
+    else return ((day <= day_month[(month)month_num]) && day>0);
 };
